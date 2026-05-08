@@ -1,53 +1,56 @@
 // ─────────────────────────────────────────────────────────────
 //  GALERIA — edytuj ten plik przez GitHub (przycisk ołówka)
 //
+//  JAK PRZENIEŚĆ WYSTAWĘ DO ARCHIWUM:
+//  1. Zmień status na "Zakończona"
+//  2. Przenieś cały blok { ... } z tablicy "aktualne" do "archiwalne"
+//  3. Podstrona /galeria/[slug] nadal będzie dostępna
+//
 //  POLA KARTY (lista wystaw):
-//  slug        → adres URL, np. "pidlo" → /galeria/pidlo  (tylko małe litery, bez spacji, bez polskich znaków)
-//  title       → tytuł wystawy, max 5 słów
+//  slug        → adres URL (tylko małe litery, bez spacji, bez polskich znaków)
+//  status      → "Trwa" | "Wkrótce" | "Zakończona"
+//  title       → tytuł wystawy, max 5–6 słów
 //  artist      → imię/imiona artystów lub "Zbiorowa"
 //  medium      → technika, max 4 słowa
 //  period      → "1 Maj – 30 Maj 2026"
 //  description → 2–3 zdania, max 400 znaków — skrót na karcie
-//  status      → "Trwa" | "Wkrótce"
 //  image       → okładka wystawy, /images/galeria/nazwa.jpg
 //
-//  POLA PODSTRONY (szczegóły po kliknięciu):
-//  curatorNote   → tekst kuratorski, kilka akapitów (użyj \n\n między akapitami)
-//  openingEvent  → data i godzina wernisażu, np. "22 Maja 2026, godz. 19:00"
-//  location      → adres jeśli inny niż MAS, np. "ul. Freta 20, Warszawa"
-//  artists[]     → tablica artystów z bio, linkami, zdjęciem
+//  POLA PODSTRONY:
+//  curatorNote   → tekst kuratorski (\n\n = nowy akapit, \n = nowa linia)
+//                  Uwaga: unikaj cudzysłowów „" wewnątrz stringa — użyj \"
+//  openingEvent  → "22 Maja 2026, godz. 19:00"
+//  location      → adres jeśli inny niż MAS
+//  artists[]     → tablica artystów z bio i linkami
 //  artworks[]    → tablica prac z tytułem, techniką, rokiem, zdjęciem
-//
-//  ARCHIWUM: najnowsze na górze, bez podstron
 // ─────────────────────────────────────────────────────────────
 
 export type Artist = {
   name: string;
-  bio: string;            // 3–5 zdań
+  bio: string;
   website?: string;
   instagram?: string;
-  image?: string;         // /images/galeria/artysta-imie.jpg
+  image?: string;
 };
 
 export type Artwork = {
   title: string;
   year: number;
   medium: string;
-  dimensions?: string;    // np. "80 × 120 cm"
-  image?: string;         // /images/galeria/praca-tytul.jpg
-  description?: string;   // opcjonalny opis pracy, 1–2 zdania
+  dimensions?: string;
+  image?: string;
+  description?: string;
 };
 
 export type Exhibition = {
   slug: string;
-  status: "Trwa" | "Wkrótce";
+  status: "Trwa" | "Wkrótce" | "Zakończona";
   title: string;
   artist: string;
   medium: string;
   period: string;
   description: string;
   image?: string;
-  // — szczegóły podstrony —
   curatorNote?: string;
   openingEvent?: string;
   location?: string;
@@ -55,12 +58,8 @@ export type Exhibition = {
   artworks?: Artwork[];
 };
 
-export type ArchivedExhibition = {
-  title: string;
-  artist: string;
-  medium: string;
-  period: string;
-};
+// ── AKTUALNE I NADCHODZĄCE ──────────────────────────────────
+// Kolejność: "Trwa" na górze, potem "Wkrótce"
 
 export const aktualne: Exhibition[] = [
   {
@@ -73,12 +72,10 @@ export const aktualne: Exhibition[] = [
     description:
       "Projekt dotyczy krajobrazu stawów hodowlanych i relacji między środowiskiem naturalnym a przestrzenią przekształconą przez człowieka. Opowieść o tym, jak oswojone miejsca ujawniają napięcia, które wcześniej pozostawały niewidoczne.",
     image: "/images/galeria/pidlo2.png",
-
     curatorNote:
       "Projekt dotyczy krajobrazu stawów hodowlanych i relacji między środowiskiem naturalnym a przestrzenią przekształconą przez człowieka.\n\nTo opowieść o tym, jak przyzwyczajenie wpływa na sposób postrzegania - i jak oswojone miejsca mogą ujawniać napięcia, które wcześniej pozostawały niewidoczne.\n\n—\n\nFOTOGRAFIA Łukasz Zając\nKURATOR Maciej Malczewski\nMUZYKA Kuba Stępień\n\nPATRONI: Rust Publishing; Sputnik Photos; Akademia Fotografii; Fundacja Stara Szkoła w Wymysłowie; Kraków. Sztuka; Love IDAA; Kraków Się Wydarza; ZPAP Okręg Krakowski; ZJC FAB.\n\n—\n\nPon-Pt 14:00-20:00 / Sobota 12:00-22:00",
     openingEvent: "2 Maja 2026, godz. 19:00",
     location: "Modular Art Studio, ul. Przykładowa 12, Warszawa",
-
     artists: [
       {
         name: "Maciej Malczewski",
@@ -95,7 +92,6 @@ export const aktualne: Exhibition[] = [
         image: "/images/galeria/artysta-zajac.jpg",
       },
     ],
-
     artworks: [
       {
         title: "Bez tytułu #1",
@@ -111,7 +107,7 @@ export const aktualne: Exhibition[] = [
         medium: "Stal, folia polimerowa, światło LED",
         dimensions: "300 × 200 × 40 cm",
         image: "/images/galeria/pidlo-praca-2.jpg",
-        description: "Instalacja reagująca na ruch widza — folia drga przy każdym zbliżeniu, zmieniając rozproszenie światła.",
+        description: "Instalacja reagująca na ruch widza — folia drga przy każdym zbliżeniu.",
       },
       {
         title: "Splot",
@@ -119,7 +115,7 @@ export const aktualne: Exhibition[] = [
         medium: "Drewno dębowe, lina jutowa",
         dimensions: "150 × 150 × 150 cm",
         image: "/images/galeria/pidlo-praca-3.jpg",
-        description: "Obiekt space-specific stworzony podczas rezydencji w MAS.",
+        description: "Obiekt site-specific stworzony podczas rezydencji w MAS.",
       },
       {
         title: "Kolumna świetlna",
@@ -127,7 +123,7 @@ export const aktualne: Exhibition[] = [
         medium: "Aluminium, światło",
         dimensions: "400 × 30 × 30 cm",
         image: "/images/galeria/pidlo-praca-4.jpg",
-        description: "Pionowa instalacja dominująca centrum galerii. Jedyna praca niemożliwa do sprzedaży — stworzona dla tej przestrzeni.",
+        description: "Pionowa instalacja dominująca centrum galerii. Stworzona dla tej przestrzeni.",
       },
     ],
   },
@@ -135,17 +131,15 @@ export const aktualne: Exhibition[] = [
   {
     slug: "tober",
     status: "Wkrótce",
-    title: "Slad Myslenia. Forma sie broni.",
+    title: "Ślad myślenia. Forma się broni.",
     artist: "Bogusław Tober",
     medium: "Malarstwo, rzeźba",
     period: "Czerwiec 2026",
     description:
-      "Bogusław Tober porusza się swobodnie pomiędzy dyscyplinami, traktując ich granicę jako punkt wyjścia do negocjacji. Rzeźba i malarstwo tworzą jeden nierozerwalny dyskurs o kolorze, formie i ich wzajemnym pierwszenstwie.",
+      "Bogusław Tober porusza się swobodnie pomiędzy dyscyplinami, traktując ich granicę jako punkt wyjścia do negocjacji. Rzeźba i malarstwo tworzą jeden nierozerwalny dyskurs o kolorze, formie i ich wzajemnym pierwszeństwie.",
     image: "/images/galeria/tober.png",
-
     curatorNote:
       "ŚLAD MYŚLENIA. Forma się broni.\n\nBogusław Tober należy do tych artystów, których twórczość jest trudna do uchwycenia za pomocą jednej etykietki - i bardzo dobrze. Absolwent Akademii Sztuk Pięknych w Warszawie, ukształtowany przez wymagające środowisko pracowni Jacka Sienickiego (malarstwo) i Stanisława Słoniny (rzeźba), porusza się swobodnie pomiędzy dyscyplinami, traktując ich granicę jako punkt wyjścia do negocjacji, a nie jako nieprzekraczalny mur.\n\nW swoich pracach prezentuje dojrzałą, spójną wewnętrznie postawę twórczą, w której rzeźba i malarstwo tworzą jeden, nierozerwalny dyskurs o kolorze, formie i ich wzajemnym pierwszeństwie. Pytanie, które implicitnie zadaje ta twórczość - czy to kolor rodzi kształt, czy kształt domaga się koloru - pozostaje celowo bez odpowiedzi. I na tym polega jej siła.\n\nfragment tekstu kuratorskiego Zofii Kubickiej",
-
     artists: [
       {
         name: "Bogusław Tober",
@@ -165,7 +159,6 @@ export const aktualne: Exhibition[] = [
     description:
       "Coroczna wystawa podsumowująca rok artystyczny. Prace uczestników warsztatów malarstwa, rysunku, ceramiki i fotografii.",
     image: "/images/galeria/absolwenci-2026.jpg",
-
     curatorNote:
       "Każdego roku MAS zaprasza uczestników warsztatów do wspólnej wystawy. To nie jest wystawa \"postępów\" - to pełnoprawna ekspozycja prac, które powstały w ciągu roku intensywnej pracy twórczej.\n\nW 2026 roku udział weźmie 18 artystek i artystów w różnym wieku i o różnym doświadczeniu. Ich prace łączy jedno: śmiałość w podejmowaniu decyzji artystycznych, którą ćwiczyli przez cały rok.\n\nWernisaż połączony będzie z podsumowaniem roku - zapraszamy wszystkich uczestników, ich bliskich oraz sympatyków MAS.",
     openingEvent: "20 Czerwca 2026, godz. 18:00",
@@ -175,29 +168,54 @@ export const aktualne: Exhibition[] = [
   },
 ];
 
-export const archiwumWystaw: ArchivedExhibition[] = [
+// ── ARCHIWUM ────────────────────────────────────────────────
+// Wystawy zakończone — przenoś tutaj z "aktualne", zmieniając status na "Zakończona"
+// Podstrony /galeria/[slug] pozostają aktywne
+// Kolejność: najnowsze na górze
+
+export const archiwalne: Exhibition[] = [
   {
+    slug: "miedzy-jawa-a-snem",
+    status: "Zakończona",
     title: "Między jawą a snem",
     artist: "Kacper Broniszewski",
     medium: "Malarstwo olejne",
     period: "Marzec – Kwiecień 2026",
+    description:
+      "Cykl obrazów olejnych eksplorujących granicę między snem a rzeczywistością. Prace powstałe podczas rocznej rezydencji artystycznej.",
+    image: "/images/galeria/miedzy-jawa-a-snem.jpg",
   },
   {
+    slug: "miasto-noca",
+    status: "Zakończona",
     title: "Miasto nocą",
     artist: "Marek Wiśniewski i in.",
     medium: "Fotografia",
     period: "Październik – Listopad 2025",
+    description:
+      "Zbiorowa wystawa fotografii nocnej. Artyści dokumentują nocne życie miasta — jego rytm, światło i cień.",
+    image: "/images/galeria/miasto-noca.jpg",
   },
   {
+    slug: "monodruk",
+    status: "Zakończona",
     title: "Monodruk",
     artist: "Kolektyw Graficzny PL",
     medium: "Grafika, druk artystyczny",
     period: "Sierpień – Wrzesień 2025",
+    description:
+      "Wystawa poświęcona technice monotypii i monodruku. Prace 8 artystów z całej Polski.",
+    image: "/images/galeria/monodruk.jpg",
   },
   {
+    slug: "debiuty-2025",
+    status: "Zakończona",
     title: "Debiuty",
     artist: "Absolwenci MAS 2025",
     medium: "Różne techniki",
     period: "Czerwiec – Lipiec 2025",
+    description:
+      "Pierwsza wspólna wystawa uczestników warsztatów MAS. Malarstwo, rysunek, ceramika i fotografia.",
+    image: "/images/galeria/debiuty-2025.jpg",
   },
 ];

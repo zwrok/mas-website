@@ -2,17 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { aktualne } from "@/data/galeria";
+import { aktualne, archiwalne } from "@/data/galeria";
+
+const wszystkie = [...aktualne, ...archiwalne];
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
-  return aktualne.map((e) => ({ slug: e.slug }));
+  return wszystkie.map((e) => ({ slug: e.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const exhibition = aktualne.find((e) => e.slug === slug);
+  const exhibition = wszystkie.find((e) => e.slug === slug);
   if (!exhibition) return { title: "Wystawa nie znaleziona" };
   return {
     title: `${exhibition.title} — Galeria MAS`,
@@ -22,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ExhibitionPage({ params }: Props) {
   const { slug } = await params;
-  const ex = aktualne.find((e) => e.slug === slug);
+  const ex = wszystkie.find((e) => e.slug === slug);
   if (!ex) notFound();
 
   const paragraphs = ex.curatorNote?.split("\n\n") ?? [];
@@ -88,6 +90,15 @@ export default async function ExhibitionPage({ params }: Props) {
           </div>
         )}
       </section>
+
+      {/* ── ARCHIVE BANNER ── */}
+      {ex.status === "Zakończona" && (
+        <div className="bg-[#F7F7F5] border-b border-[#E5E5E1] text-center py-3">
+          <p className="text-xs text-[#6B6B6B] tracking-widest uppercase">
+            Wystawa zakończona · {ex.period} · Dokumentacja archiwalna
+          </p>
+        </div>
+      )}
 
       {/* ── META BAR ── */}
       <section className="border-b border-[#E5E5E1] bg-white sticky top-16 z-40">

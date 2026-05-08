@@ -33,9 +33,10 @@ export default function GaleriaPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {aktualne.map((e, i) => (
-              <article
+              <Link
                 key={i}
-                className="border border-[#E5E5E1] bg-white overflow-hidden card-hover"
+                href={`/galeria/${e.slug}`}
+                className="group border border-[#E5E5E1] bg-white overflow-hidden card-hover block"
               >
                 {/* Image */}
                 {e.image ? (
@@ -65,16 +66,19 @@ export default function GaleriaPage() {
                     </span>
                     <span className="text-xs text-[#6B6B6B]">{e.period}</span>
                   </div>
-                  <h3 className="text-2xl font-bold mb-2">{e.title}</h3>
+                  <h3 className="text-2xl font-bold mb-2 group-hover:text-[#1B2259] transition-colors">{e.title}</h3>
                   <p className="text-sm text-[#1B2259] font-medium mb-1">
                     {e.artist}
                   </p>
                   <p className="text-xs text-[#6B6B6B] mb-4">{e.medium}</p>
-                  <p className="text-sm text-[#6B6B6B] leading-relaxed">
+                  <p className="text-sm text-[#6B6B6B] leading-relaxed mb-4">
                     {e.description}
                   </p>
+                  <span className="text-sm font-medium text-[#1B2259] group-hover:underline">
+                    Zobacz wystawę →
+                  </span>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>

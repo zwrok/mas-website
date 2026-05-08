@@ -71,7 +71,7 @@ export const aktualne: Exhibition[] = [
     medium: "Rzeźba, instalacja",
     period: "1 Maj – 30 Maj 2026",
     description:
-      "Trójgłos o przestrzeni — artyści konfrontują materię z pustką. Wystawa obejmuje rzeźby z drewna, metalu i polimeru oraz instalacje site-specific.",
+      "Projekt dotyczy krajobrazu stawów hodowlanych i relacji między środowiskiem naturalnym a przestrzenią przekształconą przez człowieka. Opowieść o tym, jak oswojone miejsca ujawniają napięcia, które wcześniej pozostawały niewidoczne.",
     image: "/images/galeria/pidlo2.png",
 
     curatorNote:
@@ -130,6 +130,29 @@ export const aktualne: Exhibition[] = [
         description: "Pionowa instalacja dominująca centrum galerii. Jedyna praca niemożliwa do sprzedaży — stworzona dla tej przestrzeni.",
       },
     ],
+  },
+
+  {
+    slug: "tober",
+    status: "Wkrótce",
+    title: "Slad Myslenia. Forma sie broni.",
+    artist: "Bogusław Tober",
+    medium: "Malarstwo, rzeźba",
+    period: "Czerwiec 2026",
+    description:
+      "Bogusław Tober porusza się swobodnie pomiędzy dyscyplinami, traktując ich granicę jako punkt wyjścia do negocjacji. Rzeźba i malarstwo tworzą jeden nierozerwalny dyskurs o kolorze, formie i ich wzajemnym pierwszenstwie.",
+    image: "/images/galeria/tober.png",
+
+    curatorNote:
+      "ŚLAD MYŚLENIA. Forma się broni.\n\nBogusław Tober należy do tych artystów, których twórczość jest trudna do uchwycenia za pomocą jednej etykietki - i bardzo dobrze. Absolwent Akademii Sztuk Pięknych w Warszawie, ukształtowany przez wymagające środowisko pracowni Jacka Sienickiego (malarstwo) i Stanisława Słoniny (rzeźba), porusza się swobodnie pomiędzy dyscyplinami, traktując ich granicę jako punkt wyjścia do negocjacji, a nie jako nieprzekraczalny mur.\n\nW swoich pracach prezentuje dojrzałą, spójną wewnętrznie postawę twórczą, w której rzeźba i malarstwo tworzą jeden, nierozerwalny dyskurs o kolorze, formie i ich wzajemnym pierwszeństwie. Pytanie, które implicitnie zadaje ta twórczość - czy to kolor rodzi kształt, czy kształt domaga się koloru - pozostaje celowo bez odpowiedzi. I na tym polega jej siła.\n\nfragment tekstu kuratorskiego Zofii Kubickiej",
+
+    artists: [
+      {
+        name: "Bogusław Tober",
+        bio: "Absolwent Akademii Sztuk Pięknych w Warszawie. Ukształtowany przez pracownię Jacka Sienickiego (malarstwo) i Stanisława Słoniny (rzeźba). W swojej twórczości swobodnie przekracza granice dyscyplin, tworząc spójny dyskurs o kolorze i formie.",
+      },
+    ],
+    artworks: [],
   },
 
   {

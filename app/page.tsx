@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { nadchodzace } from "@/data/wydarzenia";
+import { warsztaty } from "@/data/warsztaty";
 
 const services = [
   {
@@ -27,34 +29,15 @@ const services = [
   },
 ];
 
-const upcomingEvents = [
-  {
-    date: "15 Maj 2026",
-    type: "Warsztat",
-    title: "Malarstwo akwarelowe – poziom podstawowy",
-    spots: "3 miejsca",
-    price: "220 zł",
-    href: "/warsztaty",
-  },
-  {
-    date: "22 Maj 2026",
-    type: "Wernisaż",
-    title: 'Wystawa: "Formy i przestrzeń"',
-    spots: "Wstęp wolny",
-    price: null,
-    href: "/wydarzenia",
-  },
-  {
-    date: "5 Czerwiec 2026",
-    type: "Warsztat",
-    title: "Fotografia portretowa – techniki studyjne",
-    spots: "5 miejsc",
-    price: "350 zł",
-    href: "/warsztaty",
-  },
-];
-
 export default function HomePage() {
+  // Show first 3 upcoming events on homepage
+  const previewEvents = nadchodzace.slice(0, 3);
+
+  // Workshop spot summary for events that are workshops
+  const workshopSpots = Object.fromEntries(
+    warsztaty.map((w) => [w.title, { spots: w.spots, total: w.totalSpots }])
+  );
+
   return (
     <>
       {/* ── HERO ── */}
@@ -138,27 +121,36 @@ export default function HomePage() {
           </div>
 
           <div className="flex flex-col divide-y divide-[#E5E5E1] border-y border-[#E5E5E1]">
-            {upcomingEvents.map((e, i) => (
-              <Link
-                key={i}
-                href={e.href}
-                className="group flex flex-col sm:flex-row sm:items-center gap-4 py-6 hover:bg-[#F7F7F5] px-4 -mx-4 transition-colors"
-              >
-                <span className="text-xs text-[#6B6B6B] font-medium w-32 shrink-0">
-                  {e.date}
-                </span>
-                <span className="section-label text-xs w-24 shrink-0">{e.type}</span>
-                <span className="flex-1 font-semibold text-base group-hover:text-[#1B2259] transition-colors">
-                  {e.title}
-                </span>
-                <div className="flex items-center gap-4 sm:ml-auto shrink-0">
-                  <span className="text-xs text-[#6B6B6B]">{e.spots}</span>
-                  {e.price && (
-                    <span className="text-sm font-bold">{e.price}</span>
-                  )}
-                </div>
-              </Link>
-            ))}
+            {previewEvents.map((e, i) => {
+              const ws = workshopSpots[e.title];
+              const spotsLabel = ws
+                ? `${ws.spots} / ${ws.total} miejsc`
+                : e.admission;
+
+              return (
+                <Link
+                  key={i}
+                  href={e.href}
+                  className="group flex flex-col sm:flex-row sm:items-center gap-4 py-6 hover:bg-[#F7F7F5] px-4 -mx-4 transition-colors"
+                >
+                  <span className="text-xs text-[#6B6B6B] font-medium w-32 shrink-0">
+                    {e.date}
+                  </span>
+                  <span className="section-label text-xs w-24 shrink-0">
+                    {e.type}
+                  </span>
+                  <span className="flex-1 font-semibold text-base group-hover:text-[#1B2259] transition-colors">
+                    {e.title}
+                  </span>
+                  <div className="flex items-center gap-4 sm:ml-auto shrink-0">
+                    <span className="text-xs text-[#6B6B6B]">{spotsLabel}</span>
+                    {e.admission !== "Wstęp wolny" && (
+                      <span className="text-sm font-bold">{e.admission}</span>
+                    )}
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -183,7 +175,10 @@ export default function HomePage() {
                 tworzenia jak i odbioru. Zapraszamy dorosłych,
                 dzieci oraz profesjonalnych twórców.
               </p>
-              <Link href="/kontakt" className="btn-outline border-white text-white hover:bg-white hover:text-black">
+              <Link
+                href="/kontakt"
+                className="btn-outline border-white text-white hover:bg-white hover:text-black"
+              >
                 Skontaktuj się z nami
               </Link>
             </div>
@@ -210,11 +205,17 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <h2 className="text-3xl font-bold mb-2">Gotowy, żeby zacząć?</h2>
-            <p className="text-[#6B6B6B]">Zapisz się na najbliższy warsztat lub napisz do nas.</p>
+            <p className="text-[#6B6B6B]">
+              Zapisz się na najbliższy warsztat lub napisz do nas.
+            </p>
           </div>
           <div className="flex gap-4 shrink-0">
-            <Link href="/warsztaty" className="btn-primary">Warsztaty</Link>
-            <Link href="/kontakt" className="btn-outline">Kontakt</Link>
+            <Link href="/warsztaty" className="btn-primary">
+              Warsztaty
+            </Link>
+            <Link href="/kontakt" className="btn-outline">
+              Kontakt
+            </Link>
           </div>
         </div>
       </section>

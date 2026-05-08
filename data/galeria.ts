@@ -34,8 +34,8 @@ export type ArchivedExhibition = {
 export const aktualne: Exhibition[] = [
   {
     status: "Trwa",
-    title: "Formy i przestrzeń",
-    artist: "Jan Kowalski, Marta Wróbel, Tomasz Górski",
+    title: "Pidło",
+    artist: "Maciej Malczewski, Łukasz ",
     medium: "Rzeźba, instalacja",
     period: "1 Maj – 30 Maj 2026",
     description:
@@ -56,8 +56,8 @@ export const aktualne: Exhibition[] = [
 
 export const archiwumWystaw: ArchivedExhibition[] = [
   {
-    title: "Blisko natury",
-    artist: "Zofia Nowak",
+    title: "Między jawą a snem",
+    artist: "Kacper Broniszewski",
     medium: "Malarstwo olejne",
     period: "Marzec – Kwiecień 2026",
   },

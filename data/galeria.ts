@@ -40,7 +40,7 @@ export const aktualne: Exhibition[] = [
     period: "1 Maj – 30 Maj 2026",
     description:
       "Trójgłos o przestrzeni — artyści konfrontują materię z pustką. Wystawa obejmuje rzeźby z drewna, metalu i polimeru oraz instalacje site-specific.",
-    image: "/images/galeria/pidlo.png",
+    image: "/images/galeria/pidlo2.png",
   },
   {
     status: "Wkrótce",

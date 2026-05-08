@@ -27,6 +27,32 @@ export default async function ExhibitionPage({ params }: Props) {
 
   const paragraphs = ex.curatorNote?.split("\n\n") ?? [];
 
+  // Helper: render a paragraph — if it starts with "—" treat as a divider/credit block
+  function renderParagraph(text: string, i: number) {
+    if (text.trim() === "—") {
+      return <hr key={i} className="border-[#E5E5E1] my-2" />;
+    }
+    const isCreditBlock = text.startsWith("FOTOGRAFIA") || text.startsWith("PATRONI") || text.startsWith("Pon");
+    const lines = text.split("\n");
+    return (
+      <p
+        key={i}
+        className={
+          isCreditBlock
+            ? "text-xs text-[#6B6B6B] tracking-wide leading-relaxed font-mono"
+            : "text-[#333] leading-relaxed text-lg"
+        }
+      >
+        {lines.map((line, j) => (
+          <span key={j}>
+            {line}
+            {j < lines.length - 1 && <br />}
+          </span>
+        ))}
+      </p>
+    );
+  }
+
   return (
     <>
       {/* ── HERO ── */}
@@ -91,11 +117,7 @@ export default async function ExhibitionPage({ params }: Props) {
               <div className="lg:col-span-2">
                 <p className="section-label mb-8">Tekst kuratorski</p>
                 <div className="space-y-6">
-                  {paragraphs.map((p, i) => (
-                    <p key={i} className="text-[#333] leading-relaxed text-lg">
-                      {p}
-                    </p>
-                  ))}
+                  {paragraphs.map((p, i) => renderParagraph(p, i))}
                 </div>
               </div>
 

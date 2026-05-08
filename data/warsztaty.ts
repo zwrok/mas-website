@@ -54,7 +54,7 @@ export const warsztaty: Workshop[] = [
     totalSpots: 10,
     instructor: "Anna Kowalska",
     forWhom: "Dorośli",
-    image: "/images/warsztaty/akwarela.jpg",
+    image: "/images/warsztaty/akrylowe.png",
   },
   {
     id: 2,

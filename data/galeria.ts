@@ -75,7 +75,7 @@ export const aktualne: Exhibition[] = [
     image: "/images/galeria/pidlo2.png",
 
     curatorNote:
-      "\"Pidło\" to wystawa, która wyrasta z pytania o granicę między formą a jej brakiem. Maciej Malczewski i Łukasz Zając pracują w różnych materiałach i skalach, lecz łączy ich obsesja na punkcie tego, co dzieje się tuż przed tym, gdy coś staje się rzeźbą.\n\nMalczewski buduje struktury drewniane metodą intuicyjnego nakładania — żadnych planów, tylko decyzje podejmowane w trakcie. Zając odpowiada instalacjami ze stali i folii, w których światło staje się trzecim materiałem. Razem tworzą napięcie: ciężkość kontra ulotność, trwałość kontra zmiana.\n\nWystawa zajmuje całą przestrzeń galerii i zawiera elementy site-specific — część prac powstała bezpośrednio na miejscu podczas tygodniowego rezydencjalnego pobytu artystów w MAS.",
+      "Projekt dotyczy krajobrazu stawów hodowlanych i relacji między środowiskiem naturalnym a przestrzenią przekształconą przez człowieka.\n\nTo opowieść o tym, jak przyzwyczajenie wpływa na sposób postrzegania - i jak oswojone miejsca mogą ujawniać napięcia, które wcześniej pozostawały niewidoczne.\n\n—\n\nFOTOGRAFIA Łukasz Zając\nKURATOR Maciej Malczewski\nMUZYKA Kuba Stępień\n\nPATRONI: Rust Publishing; Sputnik Photos; Akademia Fotografii; Fundacja Stara Szkoła w Wymysłowie; Kraków. Sztuka; Love IDAA; Kraków Się Wydarza; ZPAP Okręg Krakowski; ZJC FAB.\n\n—\n\nPon-Pt 14:00-20:00 / Sobota 12:00-22:00",
     openingEvent: "2 Maja 2026, godz. 19:00",
     location: "Modular Art Studio, ul. Przykładowa 12, Warszawa",
 

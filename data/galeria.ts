@@ -35,12 +35,12 @@ export const aktualne: Exhibition[] = [
   {
     status: "Trwa",
     title: "Pidło",
-    artist: "Maciej Malczewski, Łukasz ",
+    artist: "Maciej Malczewski, Łukasz Zając",
     medium: "Rzeźba, instalacja",
     period: "1 Maj – 30 Maj 2026",
     description:
       "Trójgłos o przestrzeni — artyści konfrontują materię z pustką. Wystawa obejmuje rzeźby z drewna, metalu i polimeru oraz instalacje site-specific.",
-    image: "/images/galeria/pidlo.jpg",
+    image: "/images/galeria/pidlo.png",
   },
   {
     status: "Wkrótce",

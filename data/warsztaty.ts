@@ -111,7 +111,7 @@ export const warsztaty: Workshop[] = [
     id: 5,
     category: "Malarstwo",
     level: "Podstawowy",
-    title: "Malarstwo dla dzieci – lato",
+    title: "Chuje muje dzikie węże ",
     description:
       "Wesoły warsztat malarski dla dzieci. Farby, kolory, ekspresja twórcza w bezpiecznym i inspirującym środowisku.",
     date: "26 Czerwca 2026",
